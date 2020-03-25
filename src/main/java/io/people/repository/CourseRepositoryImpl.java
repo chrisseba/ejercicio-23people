@@ -27,7 +27,7 @@ public class CourseRepositoryImpl {// implements CourseRepository{
 		
 		course = new Course();
 		course.setCode( "mat0" );
-		course.setCourse( "Matematica 0" );
+		course.setCourse( "Matematica 1" );
 		courseLts.add( course );
 		
 		return courseLts;
