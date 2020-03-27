@@ -22,12 +22,12 @@ public class CourseRepositoryImpl {// implements CourseRepository{
 		
 		Course course = new Course();
 		course.setCode( "inpr" );
-		course.setCourse( "Introducción a la Programión" );
+		course.setName( "Introducción a la Programión" );
 		courseLts.add( course );
 		
 		course = new Course();
 		course.setCode( "mat0" );
-		course.setCourse( "Matematica 1" );
+		course.setName( "Matematica 1" );
 		courseLts.add( course );
 		
 		return courseLts;
