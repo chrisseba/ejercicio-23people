@@ -33,7 +33,6 @@ public class CourseController {
 		return  courseService.findAll(pageable);
 	}
 	
-	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ResponseEntity<List<Course>> getCursos( ) {
 		
@@ -41,28 +40,34 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value = "/{code}", method = RequestMethod.GET)
-	public List<Course> getCursos( @PathVariable("code") String code ) {
+	public ResponseEntity<List<Course>> getCursos( @PathVariable("code") String code ) {
 		
-		return  courseService.getCourse(code);
+		return  new ResponseEntity<>( courseService.getCourse(code), HttpStatus.OK );
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,headers = {"Content-type=application/json"})
-    public void insert( @RequestBody Course course ) {
+    public ResponseEntity insert( @RequestBody Course course ) {
 
 		courseService.insertCourse(course);
+		
+		return  ResponseEntity.status( HttpStatus.CREATED ).build();
     }
 	
 	@RequestMapping(value ="/{code}",method = RequestMethod.PUT,headers = {"Content-type=application/json"})
-    public ResponseEntity<String> update( @RequestBody Course course ) {
+    public ResponseEntity update( @RequestBody Course course ) {
 
-		return ResponseEntity.status(HttpStatus.CREATED).body( "Succes update!!") ;
+		courseService.insertCourse(course);
+		
+		return ResponseEntity.status(HttpStatus.OK).build();
     }
 	
 	
 	@RequestMapping(value ="/{code}", method = RequestMethod.DELETE)
-	public void dropCourse( @PathVariable("code") String code ){
+	public ResponseEntity dropCourse( @PathVariable("code") String code ){
 
 		courseService.dropCourse(code);
+		
+		return ResponseEntity.status(HttpStatus.OK ).build();
 	}
 	
 	
