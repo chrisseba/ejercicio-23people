@@ -28,48 +28,43 @@ public class CourseController {
 	
 	
 	@RequestMapping( method = RequestMethod.GET)
-	public Page<Course> getCursos( @PageableDefault(page=0, size=5) Pageable pageable)  {
+	public Page<Course> getCurso( @PageableDefault(page=0, size=5) Pageable pageable)  {
 		
 		return  courseService.findAll(pageable);
 	}
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public ResponseEntity<List<Course>> getCursos( ) {
+	public List<Course> getCursos( ) {
 		
-		return new ResponseEntity<>( courseService.getCourse(null), HttpStatus.OK);
+		return courseService.getCourse(null);
 	}
 	
 	@RequestMapping(value = "/{code}", method = RequestMethod.GET)
-	public ResponseEntity<List<Course>> getCursos( @PathVariable("code") String code ) {
+	public List<Course> getCursos( @PathVariable("code") String code ) {
 		
-		return  new ResponseEntity<>( courseService.getCourse(code), HttpStatus.OK );
+		return   courseService.getCourse(code);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,headers = {"Content-type=application/json"})
-    public ResponseEntity insert( @RequestBody Course course ) {
+    public ResponseEntity insert( 	@RequestBody Course course) {
 
 		courseService.insertCourse(course);
-		
 		return  ResponseEntity.status( HttpStatus.CREATED ).build();
     }
 	
 	@RequestMapping(value ="/{code}",method = RequestMethod.PUT,headers = {"Content-type=application/json"})
-    public ResponseEntity update( @RequestBody Course course ) {
+    public void update( @RequestBody Course course,
+    					@PathVariable("code") String code) {
 
-		courseService.insertCourse(course);
-		
-		return ResponseEntity.status(HttpStatus.OK).build();
+		course.setCode(code);
+		courseService.updateCourse(course);
     }
 	
-	
 	@RequestMapping(value ="/{code}", method = RequestMethod.DELETE)
-	public ResponseEntity dropCourse( @PathVariable("code") String code ){
+	public void dropCourse( @PathVariable("code") String code ){
 
 		courseService.dropCourse(code);
-		
-		return ResponseEntity.status(HttpStatus.OK ).build();
 	}
 	
 	
-
 }

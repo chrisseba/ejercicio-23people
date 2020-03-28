@@ -15,5 +15,6 @@ public interface CourseService {
 	public void insertCourse( Course course);
 	public void dropCourse( String code);
 	public Page<Course> findAll(Pageable pageable);
+	public void updateCourse( Course course); 
 
 }

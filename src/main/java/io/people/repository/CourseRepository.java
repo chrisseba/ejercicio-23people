@@ -31,6 +31,14 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Int
 	@Query(value = "CALL insertCourse(:#{#course.code}, "
 									+ ":#{#course.name});", nativeQuery = true)
 	public void insertCourse( 	@Param("course") Course course);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "CALL updateCourse(:#{#course.code}, "
+									+ ":#{#course.name});", nativeQuery = true)
+	public List<Course> updateCourse( 	@Param("course") Course course);
+	
+	
     
 	
 	@Modifying
