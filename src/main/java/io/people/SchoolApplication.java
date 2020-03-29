@@ -27,7 +27,8 @@ public class SchoolApplication {
 			http.csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/token").permitAll()
+				.antMatchers(HttpMethod.GET, "/token")
+				.permitAll()
 				.anyRequest().authenticated();
 		}
 	}

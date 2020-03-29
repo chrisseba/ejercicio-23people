@@ -24,9 +24,7 @@ public class CourseServiceImpl implements CourseService {
 	
 	public List<Course> getCourse(String code){
 		
-		if(  code != null &&  !ValidationUtils.codeValidate(code) ) {  
-			throw new IllegalArgumentException("Code lenght must  be smaller than 5");
-		}
+		this.validateCode(code);
 			
 		List<Course> courseLst = courseRepository.getCourse( code );
 		
@@ -44,9 +42,7 @@ public class CourseServiceImpl implements CourseService {
 	
 	public void updateCourse( Course course) {
 		
-		if( !ValidationUtils.codeValidate( course.getCode()  ) ) {  
-			throw new IllegalArgumentException("Code lenght must  be smaller than 5");
-		}
+		this.validateCode(course.getCode());
 		
 		List<Course> courseLst = courseRepository.updateCourse(course);
 		
@@ -66,6 +62,19 @@ public class CourseServiceImpl implements CourseService {
 		
 		return courseRepository.findAll(  pageable );
 	}
+	
+	
+	private void validateCode( String code ) {
+		
+		if(  code != null &&  !ValidationUtils.codeValidate(code) ) {  
+			throw new IllegalArgumentException("Code lenght must  be smaller than 5");
+		}
+	}
+	
+	
+	
+	
+	
 }
 
 
