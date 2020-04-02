@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table
+@Entity
 public class Student {
 	
 	@Id

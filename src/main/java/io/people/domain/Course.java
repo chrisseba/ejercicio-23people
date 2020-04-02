@@ -3,9 +3,8 @@ package io.people.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
-@Table
+@Entity
 public class Course {
 
 	@Id
