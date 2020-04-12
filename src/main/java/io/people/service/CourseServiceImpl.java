@@ -55,7 +55,15 @@ public class CourseServiceImpl implements CourseService {
 	
 	public void dropCourse(String code) {
 		
-		courseRepository.dropCourse(code);
+		List<Course> retorno = courseRepository.dropCourse(code);
+		
+		if( 	retorno == null
+			|| 	retorno.isEmpty()
+			||	retorno.get( 0 ) == null) {
+			
+			throw new ClientErrorException(  "Course not found" );
+		}
+		
 	}
 
 	public Page<Course> findAll(Pageable pageable){

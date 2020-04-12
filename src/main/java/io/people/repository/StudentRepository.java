@@ -47,7 +47,7 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, I
 	@Modifying
 	@Transactional
 	@Query(value = "CALL dropStudent(:rut);", nativeQuery = true)
-	public void dropStudent( 	@Param("rut") String rut);
+	public List<Student> dropStudent( 	@Param("rut") String rut);
 	
 	
 	

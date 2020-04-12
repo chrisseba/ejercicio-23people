@@ -58,7 +58,16 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void dropStudent(String rut) {
 		
-		this.studentRepository.dropStudent(rut);
+		List<Student> retorno = this.studentRepository.dropStudent(rut);
+		
+		if( 	retorno == null
+			|| 	retorno.isEmpty()
+			||	retorno.get( 0 ) == null) {
+			
+			throw new ClientErrorException(  "Student not found" );
+		}
+		
+		
 	}
 
 	@Override

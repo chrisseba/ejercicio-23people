@@ -44,7 +44,7 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Int
 	@Modifying
 	@Transactional
 	@Query(value = "CALL dropCourse(:code);", nativeQuery = true)
-	public void dropCourse( 	@Param("code") String code);
+	public List<Course> dropCourse( 	@Param("code") String code);
 	
 	
 	

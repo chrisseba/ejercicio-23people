@@ -62,7 +62,7 @@ public class StudentController {
 	@RequestMapping(value ="/{rut}", method = RequestMethod.DELETE)
 	public void dropCourse( @PathVariable("rut") String rut ){
 
-		studentService.dropStudent(rut);
+		this.studentService.dropStudent(rut);
 	}
 	
 	
