@@ -6,7 +6,7 @@ DELIMITER $$
 CREATE  PROCEDURE insertCourse
 (
 	_code varchar( 4 ),
-    _name varchar( 30 )
+    _name varchar( 50 )
 )
 BEGIN
 
